@@ -1,4 +1,4 @@
-package anindya.sample.materialbottomtab;
+package anindya.sample.bottom_tab_and_navigation;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,16 +12,19 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import anindya.sample.bottom_tab_and_navigation.R;
 import eu.long1.spacetablayout.SpaceTabLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Defining Variables
     Toolbar mToolbar;
+    MaterialSearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         // enable navigation bar tint
         tintManager.setNavigationBarTintEnabled(true);
         // set a custom tint color for all system bars
-        tintManager.setTintColor(Color.parseColor("#f44336"));
+        tintManager.setTintColor(Color.parseColor("#D50000"));
 
         // Set up the toolbar.
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -122,6 +126,37 @@ public class MainActivity extends AppCompatActivity {
 
         // init navigation drawer
         initNavigationDrawer();
+
+        searchView = (MaterialSearchView) findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //Do some magic
+                Toast.makeText(getApplicationContext(), getString(R.string.click_action), Toast.LENGTH_SHORT).show();
+                if (searchView.isSearchOpen()) {
+                    searchView.closeSearch();
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //Do some magic
+                return false;
+            }
+        });
+
+        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+                //Do some magic
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+                //Do some magic
+            }
+        });
 
     }
 
@@ -203,4 +238,24 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolar_menu, menu);
+
+        MenuItem item = menu.findItem(R.id.action_search);
+        searchView.setMenuItem(item);
+
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (searchView.isSearchOpen()) {
+            searchView.closeSearch();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 }

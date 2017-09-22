@@ -1,10 +1,12 @@
-package anindya.sample.materialbottomtab;
+package anindya.sample.bottom_tab_and_navigation;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import anindya.sample.bottom_tab_and_navigation.R;
 
 public class FragmentA extends Fragment {
 
