@@ -1,4 +1,4 @@
-package anindya.sample.bottom_tab_and_navigation;
+package anindya.sample.retrofit_demo;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -25,7 +25,6 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import anindya.sample.bottom_tab_and_navigation.R;
 import eu.long1.spacetablayout.SpaceTabLayout;
 
 public class MainActivity extends AppCompatActivity {
