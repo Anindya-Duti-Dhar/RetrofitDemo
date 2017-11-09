@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -27,7 +26,6 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> 
         public ImageView postImage;
         public CircleImageView userImage;
         public TextView username, timestamp, status, url;
-        //public DynamicSquareLayout squareLayout;
 
 
         public ViewHolder(View itemView) {
@@ -39,8 +37,6 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> 
 
             postImage = (ImageView) itemView.findViewById(R.id.feedImage1);
             userImage = (CircleImageView) itemView.findViewById(R.id.profilePic);
-
-            //squareLayout = (DynamicSquareLayout)itemView.findViewById(R.id.square_image_container);
         }
     }
 
@@ -112,8 +108,6 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> 
             url.setVisibility(View.GONE);
         }
 
-        //DynamicSquareLayout squareLayout = viewHolder.squareLayout;
-
         CircleImageView userImage = viewHolder.userImage;
         Picasso.with(mContext)
                 .load(data.getProfilePic()).noFade().into(userImage);
@@ -121,13 +115,11 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> 
         ImageView postImage = viewHolder.postImage;
         String postImageUrl = data.getImage();
         if (postImageUrl != null) {
-            //squareLayout.setVisibility(View.VISIBLE);
             postImage.setVisibility(View.VISIBLE);
             Picasso.with(mContext)
                     .load(data.getImage()).noFade().into(postImage);
         }
         else {
-            //squareLayout.setVisibility(View.GONE);
             postImage.setVisibility(View.GONE);
         }
     }
