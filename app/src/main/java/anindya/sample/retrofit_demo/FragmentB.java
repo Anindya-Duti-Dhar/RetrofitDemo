@@ -108,6 +108,10 @@ public class FragmentB extends Fragment {
                 feeds = response.body().getFeed();
                 Log.d("duti", "Number of feeds received: " + feeds.size());
 
+                for(int i = 0; i<feeds.size(); i++){
+                    Log.d("duti", "Name of feeds received: " + feeds.get(i).getImage());
+                }
+
                 // set the recycler view to inflate the list
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 adapter = new FeedsAdapter(getActivity(), feeds);
